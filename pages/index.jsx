@@ -9,6 +9,15 @@ export default function Home() {
     setText("");
   };
 
+  useEffect(()=>{
+    const getCache = JSON.parse(localStorage.getItem("tasks")) || "[]";
+    if(getCache){addTask(prevTask =>([...prevTask,...getCache]))};
+  },[])
+
+  useEffect(() => {
+     localStorage.setItem("tasks", JSON.stringify(task));
+  }, [task]);
+
   return (
     <>
       <div className="h-screen" style={{ background: "#563d6e" }}>

@@ -1,26 +1,28 @@
 import React from "react";
 
 export default function ListItems(props) {
-    const {task,addTask,setText}=props;
-   
-    const deleteItems = (index) => {
-        const updatedItems = task.filter((item, ind) => {
-          return ind !== index;
-        });
-        addTask(updatedItems);
-      };
-      const editData = (index) => {
-        const editData = task.find((items, ind) => {
-          if (ind === index) {
-            return items;
-          }
-        });
-        setText(editData);
-        const updatedItems = task.filter((item, ind) => {
-          return ind !== index;
-        });
-        addTask(updatedItems);
-      };
+  const { task, addTask, setText } = props;
+
+  const deleteItems = (index) => {
+    const updatedItems = task.filter((item, ind) => {
+      return ind !== index;
+    });
+    addTask(updatedItems);
+  };
+
+  const editData = (index) => {
+    const editData = task.find((items, ind) => {
+      if (ind === index) {
+        return items;
+      }
+    });
+    setText(editData);
+    const updatedItems = task.filter((item, ind) => {
+      return ind !== index;
+    });
+    addTask(updatedItems);
+  };
+
   return (
     <>
       <div className="-ml-3">

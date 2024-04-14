@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ListItems from "../components/listItems";
+import { saveAndGetTasks, addItems } from "../components/useTasksHook";
+
 export default function Home() {
   const [task, addTask] = useState([]);
   const [text, setText] = useState("");
@@ -9,20 +11,13 @@ export default function Home() {
     setText("");
   };
 
-  useEffect(()=>{
-    const getCache = JSON.parse(localStorage.getItem("tasks")) || "[]";
-    if(getCache){addTask(prevTask =>([...prevTask,...getCache]))};
-  },[])
-
-  useEffect(() => {
-     localStorage.setItem("tasks", JSON.stringify(task));
-  }, [task]);
+  saveAndGetTasks(addTask, task);
 
   return (
     <>
       <div className="h-screen" style={{ background: "#563d6e" }}>
         <div className="text-center pt-20 ">
-          <h2 className="text-white text-3xl">DataKeeper</h2>
+          <h2 className="text-white text-3xl">Data Keeper</h2>
           <input
             type="text"
             value={text}
